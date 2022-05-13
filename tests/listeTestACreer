@@ -1,0 +1,41 @@
+Vérifier le bon fonctionnement des Fonctions
+
+Creation connexion SSH.
+
+Tests Fonctionnel / D acceptance Cas de tests métier :
+* repertoire pas de téléchargement immédiat
+    How do I know when I am done?” for developers and “Did I get what I wanted?” for users.
+    User stories or requirements can be said to be done when their respective acceptance tests pass.
+    Happy Path / Alternative Path / Sad Path.
+
+Technology-Facing Tests
+* There are three types in this category: unit tests, component tests, and deployment tests.
+* Unit Test -> Test des fonctions couvrir tout le code très simple (pas de filesystem, pas de bdd, pas d'interaction -> tres rapide)
+* Component Test/ Test d'integration -> interaction avec les autres application / BDD etc...
+* Test de deploiement : Verification d'installation // correctement configuré // installé // peut contacté tout les services requis et qu'ils repondent.
+
+Business-Facing Tests :
+* Une demonstration
+* A/B test aupres des utilisateurs
+
+Technology-Facing Tests :
+* Capacité / disponibilité / sécurité ...
+* Demande bcp de moyen pour ces tests...
+
+Test de regressions:
+* L'ensemble des tests décrit ci dessous.
+-> Test bas niveau bcp et de moins en moins apres.
+
+
+
+
+    Tests unitaires : testent une partie (une unité) d’un système afin de s’assurer qu’il fonctionne correctement (build the system right)
+
+    Tests d’acceptation : testent le système afin de s’assurer qu’il est conforme aux besoins (build the right system)
+
+    Tests d’intégration : testent le système sur une plate-forme proche de la plate-forme cible
+
+    Tests de sécurité : testent que l’application ne contient pas de failles de sécurité connues (injection de code, attaque XSS, …)
+
+    Tests de robustesse : testent le comportement de l’application au limite des ressources disponibles (mémoire, CPU, …) sur la plate-forme
+
