@@ -27,8 +27,6 @@ Test de regressions:
 -> Test bas niveau bcp et de moins en moins apres.
 
 
-
-
     Tests unitaires : testent une partie (une unité) d’un système afin de s’assurer qu’il fonctionne correctement (build the system right)
 
     Tests d’acceptation : testent le système afin de s’assurer qu’il est conforme aux besoins (build the right system)
