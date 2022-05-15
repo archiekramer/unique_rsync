@@ -1,20 +1,24 @@
 from classes.InteractionBdd import InteractionBdd
 
-BASE_HOME = "/home/archiekramer/"
-
 
 class ComparationRepertoireBdd:
-    def __init__(self, liste_fichier_repertoire, INFO_CO_BDD):
-        self.ligne_vide = "VIDE"
-        self.ligne_path = "PATH"
-        self.ligne_size = "SIZE"
-        self.ligne_fichier = "Fichier"
-        self.ligne_repertoire = "REPERTOIRE"
-        self.repertoire_parent_actuel = str()
+    def __init__(self, liste_fichier_repertoire, INFO_CO_BDD, origin_directory):
+        self.nature_unique_equivalent = {
+            "-" : "FILE", 
+            "d" : "DIRECTORY"
+        }
+        self.nature_text_equivalent = {
+            origin_directory : "PATH", 
+            "total" : "SIZE",
+        }
+        self.liste_fichier_repertoire = liste_fichier_repertoire
+        self.repertoire_parent_actuel = origin_directory
         self.size_position_ligne = 4
         self.date_position_ligne = 5
         self.nom_position_ligne = 8
         self.file_to_sync = {}
+    
+    def main(self):
         self.interaction_bdd = InteractionBdd(username_bdd = INFO_CO_BDD["username"], mdp_bdd = INFO_CO_BDD["mdp"], database = INFO_CO_BDD["database"])
         for line in liste_fichier_repertoire:
             self.exploit_line(line.decode("utf-8").replace("  ", " "))
@@ -22,14 +26,14 @@ class ComparationRepertoireBdd:
 
     def exploit_line(self, ligne):
         nature_ligne = self.analyse_ligne_nature(ligne)
-        if nature_ligne is self.ligne_fichier :
+        if nature_ligne is "FILE" :
             taille, date, nom = self.ligne_fichier_extract(ligne)
             if self.interaction_bdd.verification_entree_bdd(taille, date,nom, self.repertoire_parent_actuel) is False:
                 self.file_to_sync[nom] = {"parent" : self.repertoire_parent_actuel,
                                           "size" : taille,
                                           "date" : date,
                                           "nom": nom}
-        elif nature_ligne is self.ligne_path:
+        elif nature_ligne is "PATH":
             self.repertoire_parent_actuel = self.ligne_repertoire_extract(ligne)
 
     def ligne_fichier_extract(self, ligne):
@@ -44,16 +48,15 @@ class ComparationRepertoireBdd:
         return taille, date, nom
 
     def analyse_ligne_nature(self, ligne):
-        if ligne == "" :
-            return self.ligne_vide
-        elif ligne[0] == "d":
-            return self.ligne_repertoire
-        elif ligne[0] == "-":
-            return self.ligne_fichier
-        elif BASE_HOME in ligne:
-            return self.ligne_path
-        elif "total " in ligne:
-            return self.ligne_size
+        for key, value in self.nature_unique_equivalent.items():
+            try:
+                if ligne[0] == key:
+                    return value
+            except IndexError: 
+                return "EMPTY"
+        for key, value in self.nature_text_equivalent.items():
+            if key in ligne :
+                return value
 
     def ligne_repertoire_extract(self, ligne):
         repertoire = ligne.strip()[:-1]
