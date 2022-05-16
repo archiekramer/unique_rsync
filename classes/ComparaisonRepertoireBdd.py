@@ -17,10 +17,11 @@ class ComparationRepertoireBdd:
         self.date_position_ligne = 5
         self.nom_position_ligne = 8
         self.file_to_sync = {}
+        self.INF_BDD = INFO_CO_BDD
     
     def main(self):
-        self.interaction_bdd = InteractionBdd(username_bdd = INFO_CO_BDD["username"], mdp_bdd = INFO_CO_BDD["mdp"], database = INFO_CO_BDD["database"])
-        for line in liste_fichier_repertoire:
+        self.interaction_bdd = InteractionBdd(username_bdd = self.INF_BDD["username"], mdp_bdd = self.INF_BDD["mdp"], database = self.INF_BDD["database"])
+        for line in self.liste_fichier_repertoire:
             self.exploit_line(line.decode("utf-8").replace("  ", " "))
         self.interaction_bdd.deco_bdd()
 

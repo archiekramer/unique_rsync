@@ -18,7 +18,7 @@ class InteractionBdd:
             return connection
 
         except mysql.connector.Error as error:
-            print("Failed to create table in MySQL: {}".format(error))
+            print("Failed to connect to in MySQL: {}".format(error))
 
     def deco_bdd(self):
         if self.connexion.is_connected():
