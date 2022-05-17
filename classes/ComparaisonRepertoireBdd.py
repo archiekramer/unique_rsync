@@ -16,7 +16,8 @@ class ComparationRepertoireBdd:
         self.size_position_ligne = 4
         self.date_position_ligne = 5
         self.nom_position_ligne = 8
-        self.file_to_sync = {}    
+        self.file_to_sync = {}
+
     def main(self):
         self.interaction_bdd = InteractionBdd()
         for line in self.liste_fichier_repertoire:
@@ -43,8 +44,6 @@ class ComparationRepertoireBdd:
                                  elts[self.date_position_ligne + 1],
                                  elts[self.date_position_ligne + 2])
         nom = " ".join(elts[self.nom_position_ligne:])
-        if nom == "":
-            print("pause")
         return taille, date, nom
 
     def analyse_ligne_nature(self, ligne):

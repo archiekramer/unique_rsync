@@ -1,4 +1,41 @@
+
+General : 
+// Test de telechargement d'un fichier nouveau 
+// Telechargement d'un fichier deja pris mais recemment changé
+// Telechargement d'un fichier deja pris mais recemment plus lourd
+// Non telechargement d'un fichier deja connu 
+// Telechargement repertoire et fichier à l'interieur completement. 
+// Interruption et pas de telechargement Acquitté.
+// Interruption et log dans ce cas. 
+
+Comparaison Repertoire BDD
+// Bon resultat de file_to_sync correspondance entre bdd de test non vide et fichier entrée avec plusieurs. 
+// Test Extraction de ligne fichier et correspondance ok ligne_fichier_extract ()
+// Test ligne_repertoire_extract et OK
+// Test de vérification de la nature Fichier / Reperoite PATH etc...
+
+GetConnexionSCP
+// Check SSH connexion création en localhost ok. 
+// Test téléchargement d'un fichier OK (meme taille, )
+// Test récupération d'un repertoire OK
+
+InteractionBB
+// Verification entree BDD ok. 
+// INsertion dans BDD OK. Utiliser les 2 fonctions pour s'auto tester
+// Connexion BDD et Deco OK. 
+
+downloadFiles
+// Test Création de parent OK. 
+// Test création de fichier à partir de liste à télécharger. 
+// Test Acquittement de téléchargement en BDD. 
+
+
+
+
+
 Vérifier le bon fonctionnement des Fonctions
+
+
 
 Creation connexion SSH.
 

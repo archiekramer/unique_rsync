@@ -2,8 +2,8 @@ Installation mysql-server.
 
 sudo mysql
 Sur Mysql :
-> CREATE USER 'archiekramer'@'localhost' IDENTIFIED BY 'q41jum90';
-> GRANT ALL PRIVILEGES ON *.* TO 'archiekramer'@'localhost';
+CREATE USER 'archiekramer'@'localhost' IDENTIFIED BY 'q41jum90';
+GRANT ALL PRIVILEGES ON *.* TO 'archiekramer'@'localhost';
 
 drop database history_sync;
 create database history_sync CHARACTER SET 'utf8';
