@@ -10,16 +10,6 @@ from classes.ComparaisonRepertoireBdd import ComparationRepertoireBdd
 class TestComparaisonRepertoire(unittest.TestCase):
 
     def setUp(self) -> None:
-        # Creation BDD de test. 
-        self.connection = mysql.connector.connect(host='localhost',
-                                                database=self.database,
-                                                user= self.user,
-                                                password=self.password)
-        cursor = self.connexion.cursor()
-        result = cursor.execute(request,(taille, date, nom, parent, True))
-        cursor.close()
-        self.connexion.commit()
-historique_download
         self.base_obj= ComparationRepertoireBdd([], {}, "/home/archiekramer/Mediacentre/Divers/")
         self.base_fichier = ""
         self.ligne_FILE = "-rw-rw-r--  1 archiekramer archiekramer 157K mai   12 12:35 263baba20371d78775616bd3bc4a99ca.pdf"

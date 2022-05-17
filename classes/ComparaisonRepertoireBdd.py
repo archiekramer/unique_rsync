@@ -2,7 +2,7 @@ from classes.InteractionBdd import InteractionBdd
 
 
 class ComparationRepertoireBdd:
-    def __init__(self, liste_fichier_repertoire, INFO_CO_BDD, origin_directory):
+    def __init__(self, liste_fichier_repertoire, origin_directory):
         self.nature_unique_equivalent = {
             "-" : "FILE", 
             "d" : "DIRECTORY"
@@ -16,14 +16,13 @@ class ComparationRepertoireBdd:
         self.size_position_ligne = 4
         self.date_position_ligne = 5
         self.nom_position_ligne = 8
-        self.file_to_sync = {}
-        self.INF_BDD = INFO_CO_BDD
-    
+        self.file_to_sync = {}    
     def main(self):
-        self.interaction_bdd = InteractionBdd(username_bdd = self.INF_BDD["username"], mdp_bdd = self.INF_BDD["mdp"], database = self.INF_BDD["database"])
+        self.interaction_bdd = InteractionBdd()
         for line in self.liste_fichier_repertoire:
             self.exploit_line(line.decode("utf-8").replace("  ", " "))
         self.interaction_bdd.deco_bdd()
+        return self.file_to_sync
 
     def exploit_line(self, ligne):
         nature_ligne = self.analyse_ligne_nature(ligne)

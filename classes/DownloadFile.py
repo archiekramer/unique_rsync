@@ -6,11 +6,11 @@ BASE_NON_REPRISE = "/home/archiekramer/"
 
 
 class downloadFiles:
-    def __init__(self, liste_file, destination, connexion_scp, INFO_CO_BDD):
+    def __init__(self, liste_file, destination, connexion_scp):
         self.destination = destination
         self.liste_file = liste_file
         self.connexion_scp = connexion_scp
-        self.interaction_bdd = InteractionBdd(username_bdd = INFO_CO_BDD["username"], mdp_bdd = INFO_CO_BDD["mdp"], database = INFO_CO_BDD["database"])
+        self.interaction_bdd = InteractionBdd()
         for element in liste_file:
             self.get_file(element)
         self.interaction_bdd.deco_bdd()
@@ -27,7 +27,7 @@ class downloadFiles:
         try:
             self.connexion_scp.get_file(element["parent"] + "/" +  file, parent_maj + "/" )
         except:
-            pass
+            print("erreur dans le téléchargement")
         else:
             self.acquittement_bdd(self.liste_file[file])
 

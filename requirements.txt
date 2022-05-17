@@ -10,7 +10,7 @@ create database history_sync CHARACTER SET 'utf8';
 use history_sync;
 
 CREATE TABLE historique_download (
-    id INT UNSIGNED NOT NULL,
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     nom VARCHAR(1000) NOT NULL,
     date_last_change VARCHAR(50) NOT NULL,
     size varchar(50) NOT NULL,

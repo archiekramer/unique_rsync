@@ -1,11 +1,13 @@
+import pwd
 import mysql.connector
 from mysql.connector import Error
+from config import INFO_CONNEXION_BDD
 
 class InteractionBdd:
-    def __init__(self, username_bdd, mdp_bdd, database):
-        self.database = database
-        self.user = username_bdd
-        self.password = mdp_bdd
+    def __init__(self):
+        self.database = INFO_CONNEXION_BDD["database"]
+        self.user = INFO_CONNEXION_BDD["username"]
+        self.password = INFO_CONNEXION_BDD["mdp"]
         self.connexion = self.connexion_bdd()
 
 
@@ -27,7 +29,6 @@ class InteractionBdd:
 
     def verification_entree_bdd(self, taille, date, nom, parent):
         query = "Select sync from historique_download where size = %s and date_last_change = %s and nom = %s and parent_directory = %s"
-        #query = "Select * from historique_download"
         cursor = self.connexion.cursor()
         cursor.execute(query, (taille, date, nom, parent))
         result = cursor.fetchall()
