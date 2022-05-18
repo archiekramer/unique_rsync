@@ -39,8 +39,12 @@ class ComparationRepertoireBdd:
 
     def ligne_fichier_extract(self, ligne):
         elts = ligne.strip().split(" ")
+        #enlever les element avec double espace qui gène l'extraction suivante
+        for value in range(self.nom_position_ligne):
+            if elts[value] == "" : 
+                del elts[value]
         taille = elts[self.size_position_ligne]
-        date = "{} {} {}".format(elts[self.date_position_ligne],
+        date = "{} {}".format(elts[self.date_position_ligne],
                                  elts[self.date_position_ligne + 1])
         nom = " ".join(elts[self.nom_position_ligne:])
         return taille, date, nom

@@ -3,11 +3,15 @@ from test_requirement import *
 from classes.GetScpConnexion import GetScpConnexion
 
 
+
 class TestComparaisonRepertoire(unittest.TestCase):
 
     def setUp(self) -> None:
         pass
     def tearDown(self) -> None:
+        pass
+
+    def test_telechargement_fichier_echec_pas_dans_bdd(self):
         pass
 
     ## Verification retour fonction nature de ligne ##

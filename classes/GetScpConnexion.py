@@ -35,8 +35,11 @@ class GetScpConnexion:
                 self.scp.get(remote_path=remote_path)
             else:
                 self.scp.get(remote_path=remote_path, local_path=local_path)
+            return 0
         except SCPException:
             print("erreur dans le téléchargement {} vers {}".format(remote_path, local_path ))
+            return 1
+        
 
     def get_list_repertoire(self, path_repository):
         self.ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())

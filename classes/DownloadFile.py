@@ -24,10 +24,11 @@ class downloadFiles:
     def get_file(self, file):
         element = self.liste_file[file]
         parent_maj = self.check_parent(element)
-        path_file_origine = element["parent"] + "/" +  file
+        path_file_origine = element["parent"] + "/" + file
         path_file_destination = parent_maj + "/" 
-        self.connexion_scp.get_file_scp(path_file_origine, path_file_destination)
-        self.acquittement_bdd(self.liste_file[file])
+        code_retour = self.connexion_scp.get_file_scp(path_file_origine, path_file_destination)
+        if code_retour == 0: 
+            self.acquittement_bdd(self.liste_file[file])
 
 
     def acquittement_bdd(self, element):
