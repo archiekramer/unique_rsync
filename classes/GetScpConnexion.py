@@ -1,6 +1,7 @@
 from paramiko import SSHClient
 import paramiko
-from classes.scp.scp import SCPClient
+from classes.scp.scp import SCPClient, SCPException
+
 import sys
 
 
@@ -28,11 +29,14 @@ class GetScpConnexion:
 #    scp = SCPClient(ssh.get_transport(), progress4=progress4)
 
     # SCPCLient takes a paramiko transport and progress callback as its arguments.
-    def get_file(self, remote_path, local_path = None):
-        if local_path is None:
-            self.scp.get(remote_path=remote_path)
-        else:
-            self.scp.get(remote_path=remote_path, local_path=local_path)
+    def get_file_scp(self, remote_path, local_path = None):
+        try:
+            if local_path is None:
+                self.scp.get(remote_path=remote_path)
+            else:
+                self.scp.get(remote_path=remote_path, local_path=local_path)
+        except SCPException:
+            print("erreur dans le téléchargement {} vers {}".format(remote_path, local_path ))
 
     def get_list_repertoire(self, path_repository):
         self.ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
