@@ -8,6 +8,7 @@ General :
 // Interruption et pas de telechargement Acquitté.
 // Interruption et log dans ce cas. 
 
+
 Comparaison Repertoire BDD
 // Bon resultat de file_to_sync correspondance entre bdd de test non vide et fichier entrée avec plusieurs. 
 // Test Extraction de ligne fichier et correspondance ok ligne_fichier_extract ()
@@ -17,6 +18,7 @@ Comparaison Repertoire BDD
 GetConnexionSCP
 // Check SSH connexion création en localhost ok. 
 // Test téléchargement d'un fichier OK (meme taille, )
+// Telechargement d'un fichier avec nom a rallonge et caractère speciaux
 // Test récupération d'un repertoire OK
 
 InteractionBB

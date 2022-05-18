@@ -15,13 +15,13 @@ class ComparationRepertoireBdd:
         self.repertoire_parent_actuel = origin_directory
         self.size_position_ligne = 4
         self.date_position_ligne = 5
-        self.nom_position_ligne = 8
+        self.nom_position_ligne = 7
         self.file_to_sync = {}
 
     def main(self):
         self.interaction_bdd = InteractionBdd()
         for line in self.liste_fichier_repertoire:
-            self.exploit_line(line.decode("utf-8").replace("  ", " "))
+            self.exploit_line(line.decode("utf-8"))
         self.interaction_bdd.deco_bdd()
         return self.file_to_sync
 
@@ -41,8 +41,7 @@ class ComparationRepertoireBdd:
         elts = ligne.strip().split(" ")
         taille = elts[self.size_position_ligne]
         date = "{} {} {}".format(elts[self.date_position_ligne],
-                                 elts[self.date_position_ligne + 1],
-                                 elts[self.date_position_ligne + 2])
+                                 elts[self.date_position_ligne + 1])
         nom = " ".join(elts[self.nom_position_ligne:])
         return taille, date, nom
 

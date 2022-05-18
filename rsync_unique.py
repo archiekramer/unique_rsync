@@ -13,7 +13,3 @@ if __name__ == '__main__':
     files_to_download = ComparationRepertoireBdd(list_result_directory, ORIGIN_DIRECTORY).main()
     downloadFiles(files_to_download, DESTINATION_REPERTOIRE,connexion_scp)
     connexion_scp.ssh.close()
-#TODO Problement telechargement fichier
-#"/home/archiekramer/Mediacentre/Divers/Angel\ Arekin\ -\ Retour\ aux\ sources\ -\ Le\ Porteur\ de\ Mort\ 6\ \ \[mp3-64\]/01\ -\ Cycle\ 49\ -\ Chapitre\ 1.mp3"
-#'/home/archiekramer/Mediacentre/Divers/Angel Arekin - Retour aux sources - Le Porteur de Mort 6 [mp3-64]/19 - Chapitre 19.mp3'
-

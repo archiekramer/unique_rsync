@@ -40,7 +40,7 @@ class GetScpConnexion:
 
     def get_list_repertoire(self, path_repository):
         self.ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        stdin, stdout, stderr = self.ssh.exec_command('ls -lRh {}'.format(path_repository))
+        stdin, stdout, stderr = self.ssh.exec_command('ls -lRh --time-style=long-iso {}'.format(path_repository))
         return stdout.read().splitlines()
         # for line in stdout.read().splitlines():
         #     print(line)
