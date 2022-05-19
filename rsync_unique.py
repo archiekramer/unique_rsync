@@ -1,11 +1,11 @@
 # TODO Créer un docker et docker-compose pour heberger le tout.
 
+import logging
 from classes.GetScpConnexion import GetScpConnexion
 from classes.ComparaisonRepertoireBdd import ComparationRepertoireBdd
 from classes.DownloadFile import downloadFiles
 from classes.dealWithSignal import *
 from config import INFO_CONNEXION_BDD, INFO_CONNEXION_SCP, DESTINATION_REPERTOIRE, ORIGIN_DIRECTORY
-
 
 if __name__ == '__main__':
     connexion_scp = GetScpConnexion(INFO_CONNEXION_SCP)

@@ -1,8 +1,6 @@
 import os
-
 from classes.InteractionBdd import InteractionBdd
-
-BASE_NON_REPRISE = "/home/archiekramer/"
+from config import BASE_NON_REPRISE
 
 
 class downloadFiles:
