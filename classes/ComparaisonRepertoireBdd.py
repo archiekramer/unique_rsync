@@ -40,6 +40,7 @@ class ComparationRepertoireBdd:
     def ligne_fichier_extract(self, ligne):
         elts = ligne.strip().split(" ")
         #enlever les element avec double espace qui gène l'extraction suivante
+        i = 0
         while i < len(self.nom_position_ligne):
             if elts[value] == "" : 
                 del elts[value]
