@@ -38,6 +38,8 @@ class GetScpConnexion:
             return 0
         except SCPException:
             print("erreur dans le téléchargement {} vers {}".format(remote_path, local_path ))
+            self.scp.close()
+            self.scp = SCPClient(self.ssh.get_transport(), progress4=self.progress4)
             return 1
         
 
