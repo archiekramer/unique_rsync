@@ -42,8 +42,8 @@ class ComparationRepertoireBdd:
         #enlever les element avec double espace qui gène l'extraction suivante
         i = 0
         while i < self.nom_position_ligne:
-            if elts[value] == "" : 
-                del elts[value]
+            if elts[i] == "" : 
+                del elts[i]
             else: 
                 i+=1
         taille = elts[self.size_position_ligne]
