@@ -1,6 +1,6 @@
 Repertoire rsync_unique.py
 ========================
-Ce projet permet de synchroniser des repertoires.
+Ce projet permet de synchroniser des repertoires Base Linux.
 
 Contrairement à la commande rsync il ne synchronise qu'une fois chaque fichier.
 Le repertoire destination peut donc être vidé et les fichiers qui y ont été synchronisé
@@ -16,3 +16,11 @@ Le programme est conçut pour tourner sur le serveur destinataire.
 ---------------
 
 Clé public clé privée doivent être échangé entre les 2 serveurs.
+
+---------------
+
+Deploiement : 
+- Creer Base de données sur le serveur 
+- installer dependance requise python etc...
+- copier script et config (git clone)
+- lancer le script une fois. 

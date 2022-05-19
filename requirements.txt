@@ -1,10 +1,11 @@
-Installation mysql-server.
+Installation mysql-server ou mariadb-server
 
 sudo mysql
 Sur Mysql :
 CREATE USER 'archiekramer'@'localhost' IDENTIFIED BY 'q41jum90';
 GRANT ALL PRIVILEGES ON *.* TO 'archiekramer'@'localhost';
 
+drop database history_sync;
 drop database history_sync;
 create database history_sync CHARACTER SET 'utf8';
 use history_sync;
@@ -24,9 +25,11 @@ CREATE TABLE historique_download (
 )
 ENGINE=INNODB;
 
-ALTER TABLE historique_download ADD CONSTRAINT history_parent_directory FOREIGN KEY (parent_directory) REFERENCES historique_download(id);
+CREATE INDEX index_nom ON historique_download (nom(40));
+CREATE INDEX index_parent ON historique_download (parent_directory(40));
 
-Command pour télécharger fichier :
+
+Command pour télécharger fichier utilisé:
 ls -lrH
 
 # adate
