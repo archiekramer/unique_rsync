@@ -13,6 +13,11 @@ INFO_CONNEXION_BDD = {"username" : "username",
                "database" : "history_sync"
                 }
 
+#A supprimer en production 
+DEBUG = True
 
 import logging
-logging.basicConfig(filename='example.log', encoding='utf-8', level=logging.ERROR)
+if DEBUG is True:
+    logging.basicConfig(filename='unique_rsync.log', level=logging.DEBUG)
+else:
+    logging.basicConfig(filename='unique_rsync.log', level=logging.ERROR)

@@ -2,6 +2,7 @@ import pwd
 import mysql.connector
 from mysql.connector import Error
 from config import INFO_CONNEXION_BDD
+import logging
 
 class InteractionBdd:
     def __init__(self):
@@ -20,18 +21,24 @@ class InteractionBdd:
             return connection
 
         except mysql.connector.Error as error:
-            print("Failed to connect to in MySQL: {}".format(error))
+            logging.critical("Failed to connect to in MySQL: {}".format(error))
 
     def deco_bdd(self):
         if self.connexion.is_connected():
             self.connexion.close()
-            print("MySQL connection is closed")
+            logging.info("MySQL connection is closed")
 
     def verification_entree_bdd(self, taille, date, nom, parent):
+        logging.info("Verification presence en BDD")
         query = "Select sync from historique_download where size = %s and date_last_change = %s and nom = %s and parent_directory = %s"
-        cursor = self.connexion.cursor()
-        cursor.execute(query, (taille, date, nom, parent))
-        result = cursor.fetchall()
+        try : 
+            cursor = self.connexion.cursor()
+            cursor.execute(query, (taille, date, nom, parent))
+            result = cursor.fetchall()
+        except : 
+            logging.critical("Erreur dans la recherche en BDD")
+            logging.critical("requete en erreur : {}".format(query))
+            logging.critical("attribut de la requete : {} - {} - {} - {} - ".format(taille, date, nom, parent))
         cursor.close()
         if len(result) > 0:
             return True
@@ -39,9 +46,16 @@ class InteractionBdd:
             return False
 
     def insertion_bdd(self, taille, date, nom, parent):
+        logging.info("Tentative insertion en BDD")
         request = "Insert into historique_download (size, date_last_change, nom, parent_directory, sync)  VALUES ( %s, %s, %s, %s, %s)"
-        cursor = self.connexion.cursor()
-        result = cursor.execute(request,(taille, date, nom, parent, True))
-        cursor.close()
+        try: 
+            cursor = self.connexion.cursor()
+            result = cursor.execute(request,(taille, date, nom, parent, True))
+            logging.info("Insertion en BDD OK")
+        except : 
+            logging.critical("Erreur dans l'insertion en BDD")
+            logging.critical("requete en erreur : {}".format(request))
+            logging.critical("attribut de la requete : {} - {} - {} - {} - ".format(taille, date, nom, parent))
+        cursor.close()        
         self.connexion.commit()
-
+        logging.info("Commit en BDD effectué")
