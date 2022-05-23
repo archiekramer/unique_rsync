@@ -14,10 +14,17 @@ INFO_CONNEXION_BDD = {"username" : "username",
                 }
 
 #A supprimer en production 
-DEBUG = True
+DEBUG = False
 
+LOG_DIRECTORY = '~/'
+filename_log = 'unique_rsync.log'
 import logging
+
 if DEBUG is True:
-    logging.basicConfig(filename='unique_rsync.log', level=logging.DEBUG)
+    logging.basicConfig(filename=LOG_DIRECTORY + filename_log, level=logging.DEBUG)
 else:
-    logging.basicConfig(filename='unique_rsync.log', level=logging.ERROR)
+    logging.basicConfig(filename=LOG_DIRECTORY + filename_log', level=logging.ERROR)
+
+logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s')
+#Rotation des fichiers de log 1 fois par semaine on en garde 4 max
+logging.handlers.TimedRotatingFileHandler(filename_log, when='W0',backupCount=4)
