@@ -1,0 +1,4 @@
+apt install openssh-server
+ssh username@locahost
+ssh-copy-id -i /home/username/.ssh/id_rsa.pub username@127.0.0.1
+

@@ -3,7 +3,6 @@ from test_requirement import *
 from classes.GetScpConnexion import GetScpConnexion
 
 
-
 class TestComparaisonRepertoire(unittest.TestCase):
 
     def setUp(self) -> None:

@@ -9,8 +9,10 @@ class downloadFiles:
         self.destination = destination
         self.liste_file = liste_file
         self.connexion_scp = connexion_scp
+    
+    def download_files(self):
         self.interaction_bdd = InteractionBdd()
-        for element in liste_file:
+        for element in self.liste_file:
             self.get_file(element)
         self.interaction_bdd.deco_bdd()
 

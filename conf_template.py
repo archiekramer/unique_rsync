@@ -8,6 +8,11 @@ INFO_CONNEXION_SCP = {
     "login" : "username"
 }
 
+INFO_CONNEXION_SCP_TEST = {
+    "host" : "127.0.0.1",
+    "login": os.getlogin()
+}
+
 INFO_CONNEXION_BDD = {"username" : "username",
                "mdp" : "SUPERSECRETPASSWORD",
                "database" : "history_sync"

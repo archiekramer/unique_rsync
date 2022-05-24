@@ -2,26 +2,34 @@ from json.tool import main
 import unittest, os
 from test_requirement import *
 from classes.DownloadFile import downloadFiles
+from classes.GetScpConnexion import GetScpConnexion
 
 
 class TestDownloadFile(unittest.TestCase):
     def setUp(self) -> None:
         liste_file = {}
-        destination = ""
-        connexion_scp = ""
-        self.file = { "parent" : "/home/houla/Medicentre/haha"}
+        # repertoire destination creation
+        destination = "destination_test/"
+        os.makedirs(destination)
+        connexion_scp = GetScpConnexion(INFO_CONNEXION_SCP_TEST)
+        self.file = { "parent" : BASE_NON_REPRISE + "test/file_new.mp4"}
+        self.download_file = downloadFiles(liste_file)
         directory_test = "temp_directory"
         repertoire = ""
         
     def tearDown(self) -> None:
+        # suppression repertoire destination 
+        # suppression repertoire origine
+        # Vider BDD
         pass
 
     ## Verification retour fonction nature de ligne ##
-    def test_checkparent(self):
+    def test_creation_parent_inconnu(self):
+
         print(ORIGIN_DIRECTORY)
         self.assertFalse(True)
         # connexion_scp = GetScpConnexion(INFO_CONNEXION_SCP)
 
 
-# if __name__ == "__main__": 
-#     runner = unittest.main()
+if __name__ == "__main__": 
+    runner = unittest.main()

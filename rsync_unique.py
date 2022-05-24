@@ -11,6 +11,6 @@ if __name__ == '__main__':
     connexion_scp = GetScpConnexion(INFO_CONNEXION_SCP)
     list_result_directory  = connexion_scp.get_list_repertoire(ORIGIN_DIRECTORY)
     files_to_download = ComparationRepertoireBdd(list_result_directory).main()
-    downloadFiles(files_to_download, DESTINATION_REPERTOIRE, connexion_scp)    
+    downloadFiles(files_to_download, DESTINATION_REPERTOIRE, connexion_scp).download_files()
     connexion_scp.ssh.close()
     logging.info("Fin du script de synchronisation")
