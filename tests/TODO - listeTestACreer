@@ -27,7 +27,7 @@ InteractionBB
 // Connexion BDD et Deco OK. 
 
 downloadFiles
-// Test Création de parent OK. 
+~// Test Création de parent OK. 
 // Test création de fichier à partir de liste à télécharger. 
 // Test Acquittement de téléchargement en BDD. 
 

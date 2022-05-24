@@ -1,0 +1,28 @@
+from json.tool import main
+import unittest, os
+from test_requirement import *
+from classes.DownloadFile import downloadFiles
+
+
+class TestDownloadFile(unittest.TestCase):
+
+    def setUp(self) -> None:
+        liste_file = {}
+        destination = ""
+        connexion_scp = ""
+        self.file = { "parent" : "/home/houla/Medicentre/haha"}
+        directory_test = "temp_directory"
+        repertoire = ""
+        
+    def tearDown(self) -> None:
+        pass
+
+    ## Verification retour fonction nature de ligne ##
+    def test_check_parent(self):
+        print(ORIGIN_DIRECTORY)
+        self.assertFalse(True)
+        # connexion_scp = GetScpConnexion(INFO_CONNEXION_SCP)
+
+
+# if __name__ == "__main__": 
+#     runner = unittest.main()

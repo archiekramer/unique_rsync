@@ -13,18 +13,22 @@ INFO_CONNEXION_BDD = {"username" : "username",
                "database" : "history_sync"
                 }
 
-#A supprimer en production 
-DEBUG = False
 
-LOG_DIRECTORY = '~/'
-filename_log = 'unique_rsync.log'
+#A modifier en production 
+DEBUG = True
 import logging
+from logging.handlers import TimedRotatingFileHandler
 
+
+filename_log = 'unique_rsync.log'
+
+logger = logging.getLogger()
 if DEBUG is True:
-    logging.basicConfig(filename=LOG_DIRECTORY + filename_log, level=logging.DEBUG)
+    logger.setLevel(logging.DEBUG)
 else:
-    logging.basicConfig(filename=LOG_DIRECTORY + filename_log', level=logging.ERROR)
-
-logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s')
+    logger.setLevel(logging.ERROR)
+format = logging.Formatter(fmt='%(asctime)s - %(levelname)s - %(message)s')
 #Rotation des fichiers de log 1 fois par semaine on en garde 4 max
-logging.handlers.TimedRotatingFileHandler(filename_log, when='W0',backupCount=4)
+rotation_logging_handler = TimedRotatingFileHandler(filename_log, when='W0', backupCount=5)
+rotation_logging_handler.setFormatter(format)
+logger.addHandler(rotation_logging_handler)

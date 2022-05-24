@@ -1,4 +1,3 @@
-drop database history_sync_test;
 create database history_sync_test CHARACTER SET 'utf8';
 use history_sync_test;
 
