@@ -1,9 +1,5 @@
 #Run this test from tests directory
-from distutils.log import debug
-from re import A
 from test_requirement import *
-from config import INFO_CONNEXION_BDD_TEST
-import mysql.connector
 
 from classes.ComparaisonRepertoireBdd import ComparationRepertoireBdd
 
@@ -31,7 +27,6 @@ class TestComparaisonRepertoire(unittest.TestCase):
         nature_ligne = self.base_obj.analyse_ligne_nature(ligne)
         self.assertEqual(nature_ligne, "EMPTY")
 
-    def test_nature_ligne_fichier(self):
         ligne = self.ligne_FILE
         nature_ligne = self.base_obj.analyse_ligne_nature(ligne)
         self.assertEqual(nature_ligne, "FILE")

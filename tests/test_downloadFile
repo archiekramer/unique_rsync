@@ -5,7 +5,6 @@ from classes.DownloadFile import downloadFiles
 
 
 class TestDownloadFile(unittest.TestCase):
-
     def setUp(self) -> None:
         liste_file = {}
         destination = ""
@@ -18,7 +17,7 @@ class TestDownloadFile(unittest.TestCase):
         pass
 
     ## Verification retour fonction nature de ligne ##
-    def test_check_parent(self):
+    def test_checkparent(self):
         print(ORIGIN_DIRECTORY)
         self.assertFalse(True)
         # connexion_scp = GetScpConnexion(INFO_CONNEXION_SCP)
