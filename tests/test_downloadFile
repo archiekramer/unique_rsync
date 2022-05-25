@@ -1,31 +1,41 @@
-from json.tool import main
-import unittest, os
+import unittest, os, json
 from test_requirement import *
 from classes.DownloadFile import downloadFiles
 from classes.GetScpConnexion import GetScpConnexion
 
-
 class TestDownloadFile(unittest.TestCase):
     def setUp(self) -> None:
-        liste_file = {}
-        # repertoire destination creation
-        destination = "destination_test/"
+        with open('json_data_test.json') as json_file:
+            self.liste_file = json.load(json_file)
+
+        # Repertoire origine creation 
+        self.origine = "test_file"
         os.makedirs(destination)
-        connexion_scp = GetScpConnexion(INFO_CONNEXION_SCP_TEST)
-        self.file = { "parent" : BASE_NON_REPRISE + "test/file_new.mp4"}
-        self.download_file = downloadFiles(liste_file)
+
+        # repertoire destination creation
+        self.destination = "destination_test/"
+        os.makedirs(destination)
+
+        # Creation connexion SCP de test
+        self.connexion_scp = GetScpConnexion(INFO_CONNEXION_SCP_TEST)
+        
+        #Creation objet de base
+        self.download_file = downloadFiles(self.liste_file)
         directory_test = "temp_directory"
         repertoire = ""
         
     def tearDown(self) -> None:
-        # suppression repertoire destination 
-        # suppression repertoire origine
-        # Vider BDD
-        pass
+        os.removedirs(self.destination)
+
+    def test_creation_objet_simple(self):
+        download_file = downloadFiles(self.liste_file, self.destination, self.connexion_scp)
+        self.assertTrue(True)
+        # connexion_scp = GetScpConnexion(INFO_CONNEXION_SCP)
+
 
     ## Verification retour fonction nature de ligne ##
     def test_creation_parent_inconnu(self):
-
+        
         print(ORIGIN_DIRECTORY)
         self.assertFalse(True)
         # connexion_scp = GetScpConnexion(INFO_CONNEXION_SCP)

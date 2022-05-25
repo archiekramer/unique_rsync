@@ -5,8 +5,6 @@ from classes.scp.scp import SCPClient, SCPException
 import sys, logging
 from config import DEBUG
 
-from config import SEE_PROGRESS
-
 
 class GetScpConnexion:
     def __init__(self, INFO_CONNEXION_SCP):
