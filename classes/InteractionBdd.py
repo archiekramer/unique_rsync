@@ -5,10 +5,10 @@ from config import INFO_CONNEXION_BDD
 import logging
 
 class InteractionBdd:
-    def __init__(self):
-        self.database = INFO_CONNEXION_BDD["database"]
-        self.user = INFO_CONNEXION_BDD["username"]
-        self.password = INFO_CONNEXION_BDD["mdp"]
+    def __init__(self, information_connexion_bdd = INFO_CONNEXION_BDD):
+        self.database = information_connexion_bdd["database"]
+        self.user = information_connexion_bdd["username"]
+        self.password = information_connexion_bdd["mdp"]
         self.connexion = self.connexion_bdd()
 
 

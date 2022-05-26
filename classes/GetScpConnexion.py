@@ -16,10 +16,11 @@ class GetScpConnexion:
     def client_scp(self): 
         logging.info("Creation d'un nouveau client SCP")
         if DEBUG is True:
-            self.scp = SCPClient(self.ssh.get_transport(), progress4=self.progress4)
+            scp = SCPClient(self.ssh.get_transport(), progress4=self.progress4)
         else:
-            self.scp = SCPClient(self.ssh.get_transport())
+            scp = SCPClient(self.ssh.get_transport())
         logging.info("Client SCP OK")
+        return scp
 
 
     def connect_ssh(self):

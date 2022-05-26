@@ -1,25 +1,34 @@
 import logging
 from classes.InteractionBdd import InteractionBdd
-from conf_template import ORIGIN_DIRECTORY
-
+from config import ORIGIN_DIRECTORY
 
 class ComparationRepertoireBdd:
-    def __init__(self, liste_fichier_repertoire):
+    def __init__(self, liste_fichier_repertoire, repertoire_origine = ORIGIN_DIRECTORY ):
         self.liste_fichier_repertoire = liste_fichier_repertoire
-        self.repertoire_parent_actuel = ORIGIN_DIRECTORY
+        self.repertoire_parent_actuel = repertoire_origine
         self.size_position_ligne = 4
         self.date_position_ligne = 5
         self.nom_position_ligne = 7
         self.file_to_sync = {}
+        self.interaction_bdd = None
 
     def main(self):
-        self.interaction_bdd = InteractionBdd()
+        self.init_co()
         logging.info("Demarrage analyse des lignes du repertoire")
         for line in self.liste_fichier_repertoire:
             self.exploit_line(line.decode("utf-8"))
         logging.info("Fin de l'analyse : {} fichiers a synchroniser".format(len(self.file_to_sync)))
-        self.interaction_bdd.deco_bdd()
+        self.close_co()
         return self.file_to_sync
+
+    def init_co(self, info_connexion = None):
+        if info_connexion is None: 
+            self.interaction_bdd = InteractionBdd()
+        else: 
+            self.interaction_bdd = InteractionBdd(information_connexion_bdd=info_connexion)
+
+    def close_co(self):
+        self.interaction_bdd.deco_bdd()
 
     def exploit_line(self, ligne):
         nature_ligne = self.analyse_ligne_nature(ligne)
@@ -51,7 +60,7 @@ class ComparationRepertoireBdd:
         logging.info("information extraite {} {} {}".format(taille, date, nom))
         return taille, date, nom
 
-    def analyse_ligne_nature(self, ligne):
+    def analyse_ligne_nature(self, ligne, base_directory = ORIGIN_DIRECTORY):
         logging.info("recherche de la nature de la ligne")
         try: 
             if ligne[0] == "-":
@@ -60,7 +69,7 @@ class ComparationRepertoireBdd:
                 return "DIRECTORY"
             elif "total" in ligne: 
                 return "SIZE"
-            elif ORIGIN_DIRECTORY in ligne: 
+            elif base_directory in ligne: 
                 return "PATH"
         except IndexError: 
             return "EMPTY"

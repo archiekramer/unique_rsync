@@ -13,13 +13,6 @@ Comparaison Repertoire BDD
 // Bon resultat de file_to_sync correspondance entre bdd de test non vide et fichier entrée avec plusieurs. 
 // Test Extraction de ligne fichier et correspondance ok ligne_fichier_extract ()
 // Test ligne_repertoire_extract et OK
-// Test de vérification de la nature Fichier / Reperoite PATH etc...
-
-GetConnexionSCP
-// Check SSH connexion création en localhost ok. 
-// Test téléchargement d'un fichier OK (meme taille, )
-// Telechargement d'un fichier avec nom a rallonge et caractère speciaux
-// Test récupération d'un repertoire OK
 
 InteractionBB
 // Verification entree BDD ok. 
