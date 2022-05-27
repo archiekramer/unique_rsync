@@ -1,5 +1,5 @@
-create database history_sync_test CHARACTER SET 'utf8';
-use history_sync_test;
+create database {database} CHARACTER SET 'utf8';
+use {database};
 
 CREATE TABLE historique_download (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,

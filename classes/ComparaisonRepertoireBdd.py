@@ -2,9 +2,10 @@ import logging
 from classes.InteractionBdd import InteractionBdd
 
 class ComparationRepertoireBdd:
-    def __init__(self, liste_fichier_repertoire,repertoire_origine):
+    def __init__(self, liste_fichier_repertoire, repertoire_origine):
         self.liste_fichier_repertoire = liste_fichier_repertoire
         self.repertoire_parent_actuel = repertoire_origine
+        self.origin_directory = repertoire_origine
         self.size_position_ligne = 4
         self.date_position_ligne = 5
         self.nom_position_ligne = 7
@@ -30,11 +31,11 @@ class ComparationRepertoireBdd:
         self.interaction_bdd.deco_bdd()
 
     def exploit_line(self, ligne):
-        nature_ligne = self.analyse_ligne_nature(ligne)
+        nature_ligne = self.analyse_ligne_nature(ligne, base_directory = self.origin_directory)
         if nature_ligne == "FILE" :
             taille, date, nom = self.ligne_fichier_extract(ligne)
             if self.interaction_bdd.verification_entree_bdd(taille, date,nom, self.repertoire_parent_actuel) is False:
-                self.file_to_sync[nom] = {"parent" : self.repertoire_parent_actuel,
+                self.file_to_sync[self.repertoire_parent_actuel + nom] = {"parent" : self.repertoire_parent_actuel,
                                           "size" : taille,
                                           "date" : date,
                                           "nom": nom}
@@ -59,7 +60,7 @@ class ComparationRepertoireBdd:
         logging.info("information extraite {} {} {}".format(taille, date, nom))
         return taille, date, nom
 
-    def analyse_ligne_nature(self, ligne, base_directory = ORIGIN_DIRECTORY):
+    def analyse_ligne_nature(self, ligne, base_directory):
         logging.info("recherche de la nature de la ligne")
         try: 
             if ligne[0] == "-":
@@ -72,7 +73,7 @@ class ComparationRepertoireBdd:
                 return "PATH"
         except IndexError: 
             return "EMPTY"
-    
+     
     def ligne_repertoire_extract(self, ligne):
         repertoire = ligne.strip()[:-1]
         return repertoire

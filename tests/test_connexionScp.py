@@ -14,7 +14,6 @@ class TestConnexionSCP(unittest.TestCase):
             shutil.rmtree(test_file_destination)
             os.makedirs(test_file_destination)
 
-
     def tearDown(self) -> None:
         shutil.rmtree(test_file_destination)
 

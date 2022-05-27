@@ -1,1 +1,1 @@
-drop database history_sync_test;
+drop database {database};

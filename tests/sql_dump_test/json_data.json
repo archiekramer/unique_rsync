@@ -1,0 +1,56 @@
+{
+  "2": {
+    "parent": "/home/archiekramer/Project/unique_rsync/tests/test_file",
+    "size": "0",
+    "date": "2022-05-26 17:43",
+    "nom": "2"
+  },
+  "fichier": {
+    "parent": "/home/archiekramer/Project/unique_rsync/tests/test_file",
+    "size": "0",
+    "date": "2022-05-26 17:43",
+    "nom": "fichier"
+  },
+  "fihcier": {
+    "parent": "/home/archiekramer/Project/unique_rsync/tests/test_file",
+    "size": "0",
+    "date": "2022-05-26 17:43",
+    "nom": "fihcier"
+  },
+  "json_data_test.json": {
+    "parent": "/home/archiekramer/Project/unique_rsync/tests/test_file",
+    "size": "138K",
+    "date": "2022-05-26 17:43",
+    "nom": "json_data_test.json"
+  },
+  "unique_rsync.log": {
+    "parent": "/home/archiekramer/Project/unique_rsync/tests/test_file",
+    "size": "14K",
+    "date": "2022-05-26 17:43",
+    "nom": "unique_rsync.log"
+  },
+  "test": {
+    "parent": "/home/archiekramer/Project/unique_rsync/tests/test_file/Archiekramer - Projet last [mp3-128]/qidsjasqk ['3] (copie)",
+    "size": "0",
+    "date": "2022-05-25 05:48",
+    "nom": "test"
+  },
+  "test (copie)": {
+    "parent": "/home/archiekramer/Project/unique_rsync/tests/test_file/Archiekramer - Projet last [mp3-128]/qidsjasqk ['3]",
+    "size": "0",
+    "date": "2022-05-25 05:48",
+    "nom": "test (copie)"
+  },
+  "test2#{]@ [-- @": {
+    "parent": "/home/archiekramer/Project/unique_rsync/tests/test_file/Archiekramer - Projet last [mp3-128]/qidsjasqk ['3] (3e copie)",
+    "size": "0",
+    "date": "2022-05-25 05:48",
+    "nom": "test2#{]@ [-- @"
+  },
+  "test2#{]@ [-- @ (copie)": {
+    "parent": "/home/archiekramer/Project/unique_rsync/tests/test_file/Archiekramer - Projet last [mp3-128]/qidsjasqk ['3] (3e copie)",
+    "size": "0",
+    "date": "2022-05-25 05:48",
+    "nom": "test2#{]@ [-- @ (copie)"
+  }
+}

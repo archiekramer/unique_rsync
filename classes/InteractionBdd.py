@@ -1,11 +1,10 @@
 import pwd
 import mysql.connector
 from mysql.connector import Error
-from config import INFO_CONNEXION_BDD
 import logging
 
 class InteractionBdd:
-    def __init__(self, information_connexion_bdd = INFO_CONNEXION_BDD):
+    def __init__(self, information_connexion_bdd):
         self.database = information_connexion_bdd["database"]
         self.user = information_connexion_bdd["username"]
         self.password = information_connexion_bdd["mdp"]
@@ -39,7 +38,8 @@ class InteractionBdd:
             logging.critical("Erreur dans la recherche en BDD")
             logging.critical("requete en erreur : {}".format(query))
             logging.critical("attribut de la requete : {} - {} - {} - {} - ".format(taille, date, nom, parent))
-        cursor.close()
+        else: 
+            cursor.close()
         if len(result) > 0:
             return True
         else:

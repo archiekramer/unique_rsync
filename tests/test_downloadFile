@@ -10,11 +10,10 @@ class TestDownloadFile(unittest.TestCase):
 
         # Repertoire origine creation 
         self.origine = "test_file"
-        os.makedirs(destination)
 
         # repertoire destination creation
         self.destination = "destination_test/"
-        os.makedirs(destination)
+        os.makedirs(self.destination)
 
         # Creation connexion SCP de test
         self.connexion_scp = GetScpConnexion(INFO_CONNEXION_SCP_TEST)
@@ -32,14 +31,10 @@ class TestDownloadFile(unittest.TestCase):
         self.assertTrue(True)
         # connexion_scp = GetScpConnexion(INFO_CONNEXION_SCP)
 
-
     ## Verification retour fonction nature de ligne ##
     def test_creation_parent_inconnu(self):
-        
-        print(ORIGIN_DIRECTORY)
         self.assertFalse(True)
         # connexion_scp = GetScpConnexion(INFO_CONNEXION_SCP)
-
 
 if __name__ == "__main__": 
     runner = unittest.main()
