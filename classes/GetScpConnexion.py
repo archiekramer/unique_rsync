@@ -1,7 +1,6 @@
 from paramiko import SSHClient
 import paramiko
 from classes.scp.scp import SCPClient, SCPException
-
 import sys, logging
 from config import DEBUG
 

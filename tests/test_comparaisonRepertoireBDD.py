@@ -44,24 +44,27 @@ class TestComparaisonRepertoire(unittest.TestCase):
 
     #Extraction des données brut et récupération des bonnes infoss (taille, date, comme attendu)
     def exploit_lignes_fichier(self):
-        self.assertEqual(("0", ,"2022-05-25 05:51", "fichier"), self.base_obj.ligne_fichier_extract(self.listing_repertoire[4]))
+        self.assertEqual(("0","2022-05-25 05:51", "fichier"), self.base_obj.ligne_fichier_extract(self.listing_repertoire[4]))
 
     #Donner une ligne dans le fichier absente de la base de données mene au telechargement
     def exploit_line_fichier_absente_bdd(self):
         objet_comparaison= ComparationRepertoireBdd(self.listing_repertoire, repertoire_origine = test_file_origine)
         #initier connexion_bdd
         objet_comparaison.init_co(INFO_CONNEXION_BDD_TEST)
-        objet_comparaison.exploit_line()
+        objet_comparaison.exploit_line(self.listing_repertoire[4])
+        nom_fichier = objet_comparaison.file_to_sync["fichier"]["nom"]
+        parent = objet_comparaison.file_to_sync["fichier"]["parent"]
+        self.assertEqual(tuple(nom_fichier, parent), ("fichier", test_file_origine))
 
-    #Donner une ligne dans le fichier présente de la base de données mene à rien
+    #Donner une ligne dans le fichier présente de la base de données déja préssente
     def exploit_line_fichier_presente_bdd(self):
-        pass
+        objet_comparaison2= ComparationRepertoireBdd(self.listing_repertoire, repertoire_origine = test_file_origine)
+        #initier connexion_bdd
+        objet_comparaison2.init_co(INFO_CONNEXION_BDD_TEST)
+        objet_comparaison2.exploit_line(self.listing_repertoire[4])
+        self.assertEqual(objet_comparaison.file_to_sync["fichier"]["nom"], "fichier")
 
     #Donner un repertoire dans le fichier mène à son ajout en tant que repertoire parent actuel
     def exploit_ligne_path(self):
         pass
-
-    
-
-
 

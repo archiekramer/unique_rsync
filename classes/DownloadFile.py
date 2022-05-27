@@ -1,7 +1,6 @@
 import logging
 import os
 from classes.InteractionBdd import InteractionBdd
-from config import BASE_NON_REPRISE
 
 
 class downloadFiles:
@@ -10,24 +9,25 @@ class downloadFiles:
         self.liste_file = liste_file
         self.connexion_scp = connexion_scp
     
-    def download_files(self):
+    def download_files(self, base_directory_origine):
         self.interaction_bdd = InteractionBdd()
         for element in self.liste_file:
-            self.get_file(element)
+            self.get_file(element, base_directory_origine)
         self.interaction_bdd.deco_bdd()
 
-    def check_parent(self, file):
+    def check_parent(self, file, base_non_reprise):
         logging.debug("verification presence parent")
-        parent = file["parent"].replace(BASE_NON_REPRISE, self.destination)
+        parent = file["parent"].replace(base_non_reprise, self.destination)
         if not os.path.isdir(parent):
             os.makedirs(parent)
             logging.debug("Creation du repertoire {}".format(parent))
         return parent
 
-    def get_file(self, file):
+    def get_file(self, file, base_directory_origin):
         element = self.liste_file[file]
-        parent_maj = self.check_parent(element)
+        parent_maj = self.check_parent(element, base_directory_origin)
         path_file_origine = element["parent"] + "/" + file
+
         path_file_destination = parent_maj + "/" 
         logging.info("Demarrage telechargement de fichier")
         logging.info("origine : {}".format(path_file_origine))

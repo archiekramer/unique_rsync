@@ -1,9 +1,8 @@
 import logging
 from classes.InteractionBdd import InteractionBdd
-from config import ORIGIN_DIRECTORY
 
 class ComparationRepertoireBdd:
-    def __init__(self, liste_fichier_repertoire, repertoire_origine = ORIGIN_DIRECTORY ):
+    def __init__(self, liste_fichier_repertoire,repertoire_origine):
         self.liste_fichier_repertoire = liste_fichier_repertoire
         self.repertoire_parent_actuel = repertoire_origine
         self.size_position_ligne = 4
@@ -12,8 +11,8 @@ class ComparationRepertoireBdd:
         self.file_to_sync = {}
         self.interaction_bdd = None
 
-    def main(self):
-        self.init_co()
+    def main(self,  info_bdd):
+        self.init_co(info_bdd)
         logging.info("Demarrage analyse des lignes du repertoire")
         for line in self.liste_fichier_repertoire:
             self.exploit_line(line.decode("utf-8"))
