@@ -32,7 +32,8 @@ class downloadFiles:
         logging.info("Demarrage telechargement de fichier")
         logging.info("origine : {}".format(path_file_origine))
         logging.info("destination : {}".format(path_file_destination))
-        code_retour = self.connexion_scp.get_file_scp(path_file_origine, path_file_destination)
+        #code_retour = self.connexion_scp.get_file_scp(path_file_origine, path_file_destination)
+        code_retour = 0
         if code_retour == 0: 
             logging.info("telechargement fichier ok, acquittement en BDD")
             self.acquittement_bdd(element_fichier)

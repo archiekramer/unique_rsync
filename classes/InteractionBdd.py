@@ -29,15 +29,15 @@ class InteractionBdd:
 
     def verification_entree_bdd(self, taille, date, nom, parent):
         logging.info("Verification presence en BDD")
-        query = "Select sync from historique_download where size = %s and date_last_change = %s and nom = %s and parent_directory = %s"
+        query = "Select sync from historique_download where size = %s and nom = %s and parent_directory = %s"
         try : 
             cursor = self.connexion.cursor()
-            cursor.execute(query, (taille, date, nom, parent))
+            cursor.execute(query, (taille, nom, parent))
             result = cursor.fetchall()
         except : 
             logging.critical("Erreur dans la recherche en BDD")
             logging.critical("requete en erreur : {}".format(query))
-            logging.critical("attribut de la requete : {} - {} - {} - {} - ".format(taille, date, nom, parent))
+            logging.critical("attribut de la requete : {} - {} - {} - ".format(taille, nom, parent))
         else: 
             cursor.close()
         if len(result) > 0:
