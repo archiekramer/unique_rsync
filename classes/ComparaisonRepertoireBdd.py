@@ -1,6 +1,6 @@
 import logging
 from classes.InteractionBdd import InteractionBdd
-
+from datetime import datetime
 class ComparationRepertoireBdd:
     def __init__(self, liste_fichier_repertoire, repertoire_origine):
         self.liste_fichier_repertoire = liste_fichier_repertoire
@@ -35,10 +35,12 @@ class ComparationRepertoireBdd:
         if nature_ligne == "FILE" :
             taille, date, nom = self.ligne_fichier_extract(ligne)
             if self.interaction_bdd.verification_entree_bdd(taille, date,nom, self.repertoire_parent_actuel) is False:
-                self.file_to_sync[self.repertoire_parent_actuel + nom] = {"parent" : self.repertoire_parent_actuel,
-                                          "size" : taille,
-                                          "date" : date,
-                                          "nom": nom}
+                #verifier si pas un fichier temporaire qui s'est ajouté
+                if "~{}".format(datetime.strftime(datetime.now(),"%Y")) not in nom:
+                    self.file_to_sync[self.repertoire_parent_actuel + nom] = {"parent" : self.repertoire_parent_actuel,
+                                            "size" : taille,
+                                            "date" : date,
+                                            "nom": nom}
         elif nature_ligne == "PATH":
             self.repertoire_parent_actuel = self.ligne_repertoire_extract(ligne)
             logging.info("repertoire parent actuel : {}".format(self.repertoire_parent_actuel))
